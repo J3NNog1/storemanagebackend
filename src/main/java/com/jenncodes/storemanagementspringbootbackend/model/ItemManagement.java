@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "itemmanagement")
+@Table(name= "item-management")
 public class ItemManagement {
 
 
@@ -23,11 +23,11 @@ public class ItemManagement {
     private String itemName;
     @Column(name= "description")
     private String description;
-    @Column(name= "first_name")
+    @Column(name= "category")
     private String category;
-    @Column(name= "first_name")
+    @Column(name= "price")
     private double price;
-    @Column(name= "first_name")
+    @Column(name= "initial_quantity")
     private double initialQuantity;
     //maybe use float
 
