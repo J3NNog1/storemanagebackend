@@ -24,7 +24,12 @@ public class PurchaseOrder {
     private String itemSelection;
     @Column(name= "supplier_details")
     private String supplierDetails;
+    @Column(name= "invoice_date")
+    private String invoiceDate;
     @Column(name= "quantity")
     private double quantity;
+    @Column(name="payment_status")
+    private String paymentStatus;
+
 
 }
