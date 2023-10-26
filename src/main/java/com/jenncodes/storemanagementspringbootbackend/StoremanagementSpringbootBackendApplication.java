@@ -1,7 +1,7 @@
 package com.jenncodes.storemanagementspringbootbackend;
 
-import com.jenncodes.storemanagementspringbootbackend.model.Employee;
-import com.jenncodes.storemanagementspringbootbackend.repository.EmployeeRepository;
+import com.jenncodes.storemanagementspringbootbackend.model.Admin;
+import com.jenncodes.storemanagementspringbootbackend.repository.AdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,20 +14,20 @@ public class StoremanagementSpringbootBackendApplication implements CommandLineR
 		SpringApplication.run(StoremanagementSpringbootBackendApplication.class, args);
 	}
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private AdminRepository adminRepository;
 	@Override
 	public void run(String... args) throws Exception{
-		Employee employee = new Employee();
-		employee.setFirstName("Jennifer");
-		employee.setLastName("Doe");
-		employee.setEmailId("jenniferdoe@gmail.com");
-		employeeRepository.save(employee);
+		Admin admin = new Admin();
+		admin.setFirstName("Jennifer");
+		admin.setLastName("Doe");
+		admin.setEmailId("jenniferdoe@gmail.com");
+		adminRepository.save(admin);
 
-		Employee employee1 = new Employee();
-		employee1.setFirstName("Jackson");
-		employee1.setLastName("Smith");
-		employee1.setEmailId("jacksonsmith@gmail.com");
-		employeeRepository.save(employee1);
+		Admin admin1 = new Admin();
+		admin1.setFirstName("Jackson");
+		admin1.setLastName("Smith");
+		admin1.setEmailId("jacksonsmith@gmail.com");
+		adminRepository.save(admin1);
 	}
 
 }
