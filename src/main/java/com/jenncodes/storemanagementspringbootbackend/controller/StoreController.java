@@ -25,13 +25,13 @@ public class StoreController {
     public Store createStore(@RequestBody Store store) {
         return storeRepository.save(store);
     }
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Store> getStoreById(@PathVariable long id){
         Store store = storeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Store does not exist with this id:" + id));
         return ResponseEntity.ok(store);
     }
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Store> updateStore(@PathVariable long id, @RequestBody Store storeDetails) {
         Store updateStore = storeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Store does not exist with this id:" + id ));
@@ -43,7 +43,7 @@ public class StoreController {
         storeRepository.save(updateStore);
         return ResponseEntity.ok(updateStore);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteStore(@PathVariable long id) {
         Store store = storeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Store does not exist with this id: " + id ));
