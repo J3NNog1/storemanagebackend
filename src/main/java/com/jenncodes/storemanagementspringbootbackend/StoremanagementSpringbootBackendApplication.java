@@ -1,8 +1,10 @@
 package com.jenncodes.storemanagementspringbootbackend;
 
 import com.jenncodes.storemanagementspringbootbackend.model.Admin;
+import com.jenncodes.storemanagementspringbootbackend.model.Inventory;
 import com.jenncodes.storemanagementspringbootbackend.model.ItemManagement;
 import com.jenncodes.storemanagementspringbootbackend.model.Store;
+import com.jenncodes.storemanagementspringbootbackend.repository.InventoryRepository;
 import com.jenncodes.storemanagementspringbootbackend.repository.ItemManagementRepository;
 import com.jenncodes.storemanagementspringbootbackend.repository.StoreRepository;
 import com.jenncodes.storemanagementspringbootbackend.repository.AdminRepository;
@@ -17,6 +19,25 @@ public class StoremanagementSpringbootBackendApplication implements CommandLineR
 	public static void main(String[] args) {
 		SpringApplication.run(StoremanagementSpringbootBackendApplication.class, args);
 	}
+	@Autowired
+	private InventoryRepository inventoryRepository;
+
+	@Override
+	public void run(String... args) throws Exception{
+		Inventory inventory1 = new Inventory();
+		inventory1.setQuantity(3);
+		inventory1.setStoreSelection("Atlanta, GA");
+		inventory1.setItemSelection("apples");
+		inventoryRepository.save(inventory1);
+
+		Inventory inventory = new Inventory();
+		inventory.setQuantity(2);
+		inventory.setStoreSelection("Rome, GA");
+		inventory.setItemSelection("roses");
+		inventoryRepository.save(inventory);
+	}
+
+
 //	@Autowired
 //	private AdminRepository adminRepository;
 //	@Override
@@ -56,26 +77,26 @@ public class StoremanagementSpringbootBackendApplication implements CommandLineR
 //		storeRepository.save(store1);
 //	}
 
-	@Autowired
-	private ItemManagementRepository itemManagementRepository;
-
-	@Override
-	public void run (String... arg) throws Exception{
-		ItemManagement itemManagement = new ItemManagement();
-		itemManagement.setItemName("PS5");
-		itemManagement.setCategory("Electronics");
-		itemManagement.setDescription("Sony PlayStation");
-		itemManagement.setPrice(499.99);
-		itemManagement.setInitialQuantity(3);
-
-		ItemManagement itemManagement1 = new ItemManagement();
-		itemManagement1.setItemName("Fabuloso");
-		itemManagement1.setCategory("House hold goods");
-		itemManagement1.setDescription("Floor cleaning");
-		itemManagement1.setPrice(4.59);
-		itemManagement1.setInitialQuantity(10);
-
-
-	}
+//	@Autowired
+//	private ItemManagementRepository itemManagementRepository;
+//
+//	@Override
+//	public void run (String... arg) throws Exception{
+//		ItemManagement itemManagement = new ItemManagement();
+//		itemManagement.setItemName("PS5");
+//		itemManagement.setCategory("Electronics");
+//		itemManagement.setDescription("Sony PlayStation");
+//		itemManagement.setPrice(499.99);
+//		itemManagement.setInitialQuantity(3);
+//
+//		ItemManagement itemManagement1 = new ItemManagement();
+//		itemManagement1.setItemName("Fabuloso");
+//		itemManagement1.setCategory("House hold goods");
+//		itemManagement1.setDescription("Floor cleaning");
+//		itemManagement1.setPrice(4.59);
+//		itemManagement1.setInitialQuantity(10);
+//
+//
+//	}
 
 }

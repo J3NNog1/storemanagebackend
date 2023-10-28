@@ -1,8 +1,7 @@
 package com.jenncodes.storemanagementspringbootbackend.model;
 
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
 //import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,15 +11,19 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Entity
 @Table(name = "inventory-management")
-public class InventoryManagement {
+public class Inventory {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name= "store_selection")
     private String storeSelection;
     @Column(name= "item_selection")
     private String itemSelection;
     @Column(name= "quantity")
-    private String quantity;
+    private int quantity;
 
 }

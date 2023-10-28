@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("sams/items")
+@RequestMapping("api/sams/items")
 public class ItemManagementController {
 
     @Autowired
