@@ -29,7 +29,7 @@ public class PurchaseOrder {
     @Column(name= "quantity")
     private double quantity;
     @Column(name="payment_status")
-    private String paymentStatus;
+    private boolean paymentStatus;
 
 
 }

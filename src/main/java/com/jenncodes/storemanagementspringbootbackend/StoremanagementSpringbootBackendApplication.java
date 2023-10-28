@@ -1,13 +1,7 @@
 package com.jenncodes.storemanagementspringbootbackend;
 
-import com.jenncodes.storemanagementspringbootbackend.model.Admin;
-import com.jenncodes.storemanagementspringbootbackend.model.Inventory;
-import com.jenncodes.storemanagementspringbootbackend.model.ItemManagement;
-import com.jenncodes.storemanagementspringbootbackend.model.Store;
-import com.jenncodes.storemanagementspringbootbackend.repository.InventoryRepository;
-import com.jenncodes.storemanagementspringbootbackend.repository.ItemManagementRepository;
-import com.jenncodes.storemanagementspringbootbackend.repository.StoreRepository;
-import com.jenncodes.storemanagementspringbootbackend.repository.AdminRepository;
+import com.jenncodes.storemanagementspringbootbackend.model.*;
+import com.jenncodes.storemanagementspringbootbackend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,23 +13,48 @@ public class StoremanagementSpringbootBackendApplication implements CommandLineR
 	public static void main(String[] args) {
 		SpringApplication.run(StoremanagementSpringbootBackendApplication.class, args);
 	}
+
 	@Autowired
-	private InventoryRepository inventoryRepository;
+	private PurchaseOrderRepository purchaseOrderRepository;
 
 	@Override
 	public void run(String... args) throws Exception{
-		Inventory inventory1 = new Inventory();
-		inventory1.setQuantity(3);
-		inventory1.setStoreSelection("Atlanta, GA");
-		inventory1.setItemSelection("apples");
-		inventoryRepository.save(inventory1);
+		PurchaseOrder purchaseOrder = new PurchaseOrder();
+		purchaseOrder.setStoreSelection("use store id");
+		purchaseOrder.setQuantity(10.5);
+		purchaseOrder.setItemSelection("maybe use item id");
+		purchaseOrder.setSupplierDetails("supplier name");
+		purchaseOrder.setInvoiceDate("XX/XX/XX");
+		purchaseOrder.setPaymentStatus(true);
+		purchaseOrderRepository.save(purchaseOrder);
 
-		Inventory inventory = new Inventory();
-		inventory.setQuantity(2);
-		inventory.setStoreSelection("Rome, GA");
-		inventory.setItemSelection("roses");
-		inventoryRepository.save(inventory);
+		PurchaseOrder purchaseOrder1 = new PurchaseOrder();
+		purchaseOrder1.setStoreSelection("use store id");
+		purchaseOrder1.setQuantity(10.5);
+		purchaseOrder1.setItemSelection("maybe use item id");
+		purchaseOrder1.setSupplierDetails("supplier name");
+		purchaseOrder1.setInvoiceDate("XX/XX/XX");
+		purchaseOrder1.setPaymentStatus(true);
+		purchaseOrderRepository.save(purchaseOrder1);
 	}
+
+//	@Autowired
+//	private InventoryRepository inventoryRepository;
+//
+//	@Override
+//	public void run(String... args) throws Exception{
+//		Inventory inventory1 = new Inventory();
+//		inventory1.setQuantity(3);
+//		inventory1.setStoreSelection("Atlanta, GA");
+//		inventory1.setItemSelection("apples");
+//		inventoryRepository.save(inventory1);
+//
+//		Inventory inventory = new Inventory();
+//		inventory.setQuantity(2);
+//		inventory.setStoreSelection("Rome, GA");
+//		inventory.setItemSelection("roses");
+//		inventoryRepository.save(inventory);
+//	}
 
 
 //	@Autowired
