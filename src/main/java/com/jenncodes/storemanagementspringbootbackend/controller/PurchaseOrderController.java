@@ -2,7 +2,6 @@ package com.jenncodes.storemanagementspringbootbackend.controller;
 
 import com.jenncodes.storemanagementspringbootbackend.exception.ResourceNotFoundException;
 import com.jenncodes.storemanagementspringbootbackend.model.PurchaseOrder;
-import com.jenncodes.storemanagementspringbootbackend.model.Store;
 import com.jenncodes.storemanagementspringbootbackend.repository.PurchaseOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,6 +24,11 @@ public class PurchaseOrderController {
     public PurchaseOrder createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
         return purchaseOrderRepository.save(purchaseOrder);
     }
+//    @PostMapping("/save_purchase_order")
+//    public ResponseEntity<String> savePurchaseOrder(@RequestBody List<PurchaseOrder> purchaseOrderData){
+//        purchaseOrderRepository.saveAll(purchaseOrderData);
+//        return ResponseEntity.ok("Purchase Order saved");
+//    }
     @GetMapping("/{id}")
     public ResponseEntity<PurchaseOrder> getPurchaseOrderById(@PathVariable long id){
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(id)

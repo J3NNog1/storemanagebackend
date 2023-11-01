@@ -18,6 +18,7 @@ public class ItemManagement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "id")
     private long id;
     @Column(name= "item_name")
     private String itemName;
@@ -29,7 +30,6 @@ public class ItemManagement {
     private double price;
     @Column(name= "initial_quantity")
     private double initialQuantity;
-    //maybe use float
 
 
 

@@ -12,14 +12,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "supplier-details")
-public class SupplierDetails {
+@Table(name= "supplier")
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name= "id")
+    private long id;
     @Column(name= "company-name")
     private String companyName;
     @Column(name= "inventory-type")
     private String inventoryType;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name= "fk_add_p_o_id")
+    private PurchaseOrder purchaseOrder;
+
 }

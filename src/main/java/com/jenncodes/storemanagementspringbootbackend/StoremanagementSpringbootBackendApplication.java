@@ -13,30 +13,46 @@ public class StoremanagementSpringbootBackendApplication implements CommandLineR
 	public static void main(String[] args) {
 		SpringApplication.run(StoremanagementSpringbootBackendApplication.class, args);
 	}
-
 	@Autowired
-	private PurchaseOrderRepository purchaseOrderRepository;
+	private SupplierRepository supplierRepository;
 
 	@Override
 	public void run(String... args) throws Exception{
-		PurchaseOrder purchaseOrder = new PurchaseOrder();
-		purchaseOrder.setStoreSelection("use store id");
-		purchaseOrder.setQuantity(10.5);
-		purchaseOrder.setItemSelection("maybe use item id");
-		purchaseOrder.setSupplierDetails("supplier name");
-		purchaseOrder.setInvoiceDate("XX/XX/XX");
-		purchaseOrder.setPaymentStatus(true);
-		purchaseOrderRepository.save(purchaseOrder);
+		Supplier supplier = new Supplier();
+		supplier.setCompanyName("Johnson and jhonson");
+		supplier.setInventoryType("hygenie");
 
-		PurchaseOrder purchaseOrder1 = new PurchaseOrder();
-		purchaseOrder1.setStoreSelection("use store id");
-		purchaseOrder1.setQuantity(10.5);
-		purchaseOrder1.setItemSelection("maybe use item id");
-		purchaseOrder1.setSupplierDetails("supplier name");
-		purchaseOrder1.setInvoiceDate("XX/XX/XX");
-		purchaseOrder1.setPaymentStatus(true);
-		purchaseOrderRepository.save(purchaseOrder1);
+		supplierRepository.save(supplier);
+
+		Supplier supplier1 = new Supplier();
+		supplier1.setCompanyName("Sony");
+		supplier1.setInventoryType("electronics");
+
+		supplierRepository.save(supplier1);
 	}
+//	@Autowired
+//	private PurchaseOrderRepository purchaseOrderRepository;
+//
+//	@Override
+//	public void run(String... args) throws Exception{
+//		PurchaseOrder purchaseOrder = new PurchaseOrder();
+//		purchaseOrder.setStoreSelection("use store id");
+//		purchaseOrder.setQuantity(10.5);
+//		purchaseOrder.setItemSelection("maybe use item id");
+//		purchaseOrder.setSupplierDetails("supplier name");
+//		purchaseOrder.setInvoiceDate("XX/XX/XX");
+//		purchaseOrder.setPaymentStatus(true);
+//		purchaseOrderRepository.save(purchaseOrder);
+//
+//		PurchaseOrder purchaseOrder1 = new PurchaseOrder();
+//		purchaseOrder1.setStoreSelection("use store id");
+//		purchaseOrder1.setQuantity(10.5);
+//		purchaseOrder1.setItemSelection("maybe use item id");
+//		purchaseOrder1.setSupplierDetails("supplier name");
+//		purchaseOrder1.setInvoiceDate("XX/XX/XX");
+//		purchaseOrder1.setPaymentStatus(true);
+//		purchaseOrderRepository.save(purchaseOrder1);
+//	}
 
 //	@Autowired
 //	private InventoryRepository inventoryRepository;

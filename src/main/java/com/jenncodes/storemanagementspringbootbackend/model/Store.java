@@ -18,6 +18,7 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "id")
     private long id;
     @Column(name= "store_name")
     private String storeName;
@@ -29,6 +30,7 @@ public class Store {
     private String storeType;
     @Column(name= "opening_date")
     private String openingDate;
+
 
 
 }

@@ -17,13 +17,14 @@ public class Inventory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
+    @Column(name= "id")
+    private long id;
     @Column(name= "store_selection")
     private String storeSelection;
     @Column(name= "item_selection")
     private String itemSelection;
     @Column(name= "quantity")
     private int quantity;
+
 
 }

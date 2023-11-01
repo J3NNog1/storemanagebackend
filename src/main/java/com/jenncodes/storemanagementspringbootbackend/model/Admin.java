@@ -19,6 +19,7 @@ public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "id")
     private long id;
     @Column(name= "first_name")
     private String firstName;
@@ -26,7 +27,9 @@ public class Admin {
     private String lastName;
     @Column(name= "email_id")
     private String emailId;
-    @Column(name= "role")
-    private String role;
+    @Column(name= "role_type")
+    private String roleType;
+
+    //address_add_
 
 }

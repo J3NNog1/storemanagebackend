@@ -2,21 +2,20 @@ package com.jenncodes.storemanagementspringbootbackend.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+
 @Table(name= "purchase-orders")
 public class PurchaseOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name= "id")
     private long id;
     @Column(name= "store_selection")
     private String storeSelection;
@@ -30,6 +29,10 @@ public class PurchaseOrder {
     private double quantity;
     @Column(name="payment_status")
     private boolean paymentStatus;
+    //supplier_add_id - default fk column name
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_add_supplier_id")
+    private Supplier supplier;
 
 
 }
