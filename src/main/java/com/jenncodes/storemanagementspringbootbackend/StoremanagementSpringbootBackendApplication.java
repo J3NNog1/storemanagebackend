@@ -18,17 +18,17 @@ public class StoremanagementSpringbootBackendApplication implements CommandLineR
 
 	@Override
 	public void run(String... args) throws Exception{
-		Supplier supplier = new Supplier();
-		supplier.setCompanyName("Johnson and jhonson");
-		supplier.setInventoryType("hygenie");
-
-		supplierRepository.save(supplier);
-
-		Supplier supplier1 = new Supplier();
-		supplier1.setCompanyName("Sony");
-		supplier1.setInventoryType("electronics");
-
-		supplierRepository.save(supplier1);
+//		Supplier supplier = new Supplier();
+//		supplier.setCompanyName("Johnson and jhonson");
+//		supplier.setInventoryType("hygenie");
+//
+//		supplierRepository.save(supplier);
+//
+//		Supplier supplier1 = new Supplier();
+//		supplier1.setCompanyName("Sony");
+//		supplier1.setInventoryType("electronics");
+//
+//		supplierRepository.save(supplier1);
 	}
 //	@Autowired
 //	private PurchaseOrderRepository purchaseOrderRepository;

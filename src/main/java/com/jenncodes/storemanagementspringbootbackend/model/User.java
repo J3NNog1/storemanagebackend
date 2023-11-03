@@ -14,22 +14,20 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "admins")
-public class Admin {
+@Table(name= "users")
 
+
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "id")
     private long id;
-    @Column(name= "first_name")
-    private String firstName;
-    @Column(name= "last_name")
-    private String lastName;
-    @Column(name= "email_id")
-    private String emailId;
+    @Column(name= "user_name")
+    private String userName;
+    @Column(name= "password")
+    private String password;
     @Column(name= "role_type")
     private String roleType;
 
-    //address_add_
 
 }

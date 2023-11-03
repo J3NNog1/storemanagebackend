@@ -24,11 +24,8 @@ public class PurchaseOrderController {
     public PurchaseOrder createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
         return purchaseOrderRepository.save(purchaseOrder);
     }
-//    @PostMapping("/save_purchase_order")
-//    public ResponseEntity<String> savePurchaseOrder(@RequestBody List<PurchaseOrder> purchaseOrderData){
-//        purchaseOrderRepository.saveAll(purchaseOrderData);
-//        return ResponseEntity.ok("Purchase Order saved");
-//    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<PurchaseOrder> getPurchaseOrderById(@PathVariable long id){
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(id)
@@ -41,13 +38,13 @@ public class PurchaseOrderController {
                 .orElseThrow(() -> new ResourceNotFoundException("Purchase order does not exist with this id:" + id ));
         updatePurchaseOrder.setStoreSelection(purchaseOrderDetails.getStoreSelection());
         updatePurchaseOrder.setItemSelection(purchaseOrderDetails.getItemSelection());
-        updatePurchaseOrder.setSupplierDetails(purchaseOrderDetails.getSupplierDetails());
         updatePurchaseOrder.setInvoiceDate(purchaseOrderDetails.getInvoiceDate());
         updatePurchaseOrder.setQuantity(purchaseOrderDetails.getQuantity());
         updatePurchaseOrder.setPaymentStatus(purchaseOrderDetails.isPaymentStatus());
         purchaseOrderRepository.save(updatePurchaseOrder);
         return ResponseEntity.ok(updatePurchaseOrder);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteStore(@PathVariable long id) {
         PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(id)

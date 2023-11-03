@@ -2,7 +2,8 @@ package com.jenncodes.storemanagementspringbootbackend.controller;
 
 import com.jenncodes.storemanagementspringbootbackend.exception.ResourceNotFoundException;
 
-
+import com.jenncodes.storemanagementspringbootbackend.repository.PurchaseOrderRepository;
+import com.jenncodes.storemanagementspringbootbackend.model.PurchaseOrder;
 import com.jenncodes.storemanagementspringbootbackend.model.Supplier;
 import com.jenncodes.storemanagementspringbootbackend.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import java.util.List;
 public class SupplierController {
     @Autowired
     private SupplierRepository supplierRepository;
+
+//    @Autowired
+//    private PurchaseOrderRepository purchaseOrderRepository;
     @GetMapping
     public List<Supplier> getAllSuppliers() {
         return supplierRepository.findAll();
@@ -42,6 +46,17 @@ public class SupplierController {
         supplierRepository.save(updateSupplier);
         return ResponseEntity.ok(updateSupplier);
     }
+//    @PutMapping("/{supplier}/purchase_order/{purchaseOrderId}")
+//    Supplier assignPurchaseOrderToSupplier(@PathVariable Long supplierId, @PathVariable Long purchaseOrderId) {
+//        Supplier supplier = supplierRepository.findById(supplierId).get();
+//        PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(purchaseOrderId).get();
+//
+//        supplier.setPurchaseOrder(purchaseOrder);
+//        return supplierRepository.save(supplier);
+//
+//    }
+
+
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteSupplier(@PathVariable long id) {
         Supplier supplier = supplierRepository.findById(id)
