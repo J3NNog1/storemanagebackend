@@ -1,17 +1,12 @@
 package com.jenncodes.storemanagementspringbootbackend.config;
 
-
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.models.HttpMethod;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
-
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,60 +15,55 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults;
-
-@Getter
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private CustomUserDetailsService userDetailsService;
 
-
-    private CustomUserDetailService customUserDetailService;
-    @Autowired
-    public SecurityConfig(CustomUserDetailService customUserDetailService) {
-        this.customUserDetailService = customUserDetailService;
+    public SecurityConfig(CustomUserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests((requests) -> requests
-                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**").authenticated() // Allow Swagger UI access
-                        .anyRequest().authenticated())
-                .csrf(csrf -> csrf.disable()) // Disable CSRF protection
-                .httpBasic(withDefaults()); // Use default HTTP Basic Authentication
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        HttpSecurity httpSecurity = http
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(String.valueOf(HttpMethod.GET)).permitAll()
+                        .anyRequest().permitAll());
 
         return http.build();
+
     }
 
     @Bean
     public UserDetailsService users() {
-        UserDetails admin = User.builder()
-                .username("admin")
+        UserDetails user = User.builder()
+                .username("user")
                 .password("password")
-                .roles("ADMIN")
+                .roles("USER")
                 .build();
-
         UserDetails manager = User.builder()
                 .username("manager")
                 .password("password")
                 .roles("MANAGER")
                 .build();
-
-        UserDetails staff = User.builder()
-                .username("staff")
+        UserDetails admin = User.builder()
+                .username("admin")
                 .password("password")
-                .roles("STAFF")
+                .roles("ADMIN")
                 .build();
-
-        return new InMemoryUserDetailsManager(admin, manager, staff);
+        return new InMemoryUserDetailsManager(user);
     }
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(
+            AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration
+                .getAuthenticationManager();
     }
     @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

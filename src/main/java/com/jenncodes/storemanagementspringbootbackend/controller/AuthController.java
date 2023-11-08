@@ -34,26 +34,27 @@ public class AuthController {
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto){
-        if(userRepository.existsByUserName(registerDto.getUserName())){
-            return new ResponseEntity<>("Username is already taken", HttpStatus.BAD_REQUEST);
+
+    @PostMapping("login")
+    public ResponseEntity<String> login() {
+        return new ResponseEntity<>("User logged in success!", HttpStatus.OK);
+    }
+    @PostMapping("register")
+    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) {
+        if (userRepository.existsByUserName(registerDto.getUserName())) {
+            return new ResponseEntity<>("Username is taken!", HttpStatus.BAD_REQUEST);
         }
+
         UserEntity user = new UserEntity();
         user.setUserName(registerDto.getUserName());
-        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
+        user.setPassword(passwordEncoder.encode((registerDto.getPassword())));
 
         Role roles = roleRepository.findByName("USER").get();
         user.setRoles(Collections.singletonList(roles));
-        // Set the user role as needed
 
-        // Add the role to the user's roles list
-//        boolean add = user.getRoles().add(userRole);
-
-        // Save the user to the database
         userRepository.save(user);
 
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
+        return new ResponseEntity<>("User registered success!", HttpStatus.OK);
     }
 
 }

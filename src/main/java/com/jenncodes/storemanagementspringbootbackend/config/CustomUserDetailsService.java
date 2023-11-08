@@ -17,22 +17,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class CustomUserDetailService implements UserDetailsService {
+public class CustomUserDetailsService  implements UserDetailsService {
 
-    public UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    public CustomUserDetailService(UserRepository userRepository) {
+    public CustomUserDetailsService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = userRepository.findByUserName(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User does not exist with username: " + username));
-        return new User(userEntity.getUserName(), userEntity.getPassword(), mapRolesToAuthorites(userEntity.getRoles()));
 
+    @Override
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        UserEntity user = userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+        return new User(user.getUserName(), user.getPassword(), mapRolesToAuthorities(user.getRoles()));
     }
-    private Collection<GrantedAuthority> mapRolesToAuthorites(List<Role> roles){
+
+    private Collection<GrantedAuthority> mapRolesToAuthorities(List<Role> roles) {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
     }
 }
